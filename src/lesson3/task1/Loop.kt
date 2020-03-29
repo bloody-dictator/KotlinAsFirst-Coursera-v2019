@@ -175,7 +175,15 @@ fun revert(n: Int): Int = TODO()
  *
  * Использовать операции со строками в этой задаче запрещается.
  */
-fun isPalindrome(n: Int): Boolean = TODO()
+fun isPalindrome(n: Int): Boolean{
+    var swap = n
+    var palindrom = 0
+    while(swap != 0){
+        palindrom = swap%10 +palindrom*10
+        swap/=10
+    }
+    return palindrom == n
+}
 
 /**
  * Средняя
