@@ -224,6 +224,7 @@ fun factorizeToString(n: Int): String {
 fun convert(n: Int, base: Int): List<Int> {
     var swap = n
     val result = ArrayList<Int>()
+    if (n==0) return listOf(0)
      while(swap>0) {
          result.add(swap%base)
          swap/=base
