@@ -242,7 +242,42 @@ fun convert(n: Int, base: Int): List<Int> {
  * Использовать функции стандартной библиотеки, напрямую и полностью решающие данную задачу
  * (например, n.toString(base) и подобные), запрещается.
  */
-fun convertToString(n: Int, base: Int): String = TODO()
+fun convertToString(n: Int, base: Int): String{
+    val stringBuilder = StringBuilder()
+    val result = convert(n, base)
+    result.forEach {
+        when{
+            it<10 -> stringBuilder.append(it)
+            it==10 -> stringBuilder.append("a")
+            it==11-> stringBuilder.append("b")
+            it==12-> stringBuilder.append("c")
+            it==13-> stringBuilder.append("d")
+            it==14-> stringBuilder.append("e")
+            it==15-> stringBuilder.append("f")
+            it==16-> stringBuilder.append("g")
+            it==17->stringBuilder.append("h")
+            it==18-> stringBuilder.append("i")
+            it==19-> stringBuilder.append("j")
+            it==20-> stringBuilder.append("k")
+            it==21-> stringBuilder.append("l")
+            it==22-> stringBuilder.append("m")
+            it==23-> stringBuilder.append("n")
+            it==24-> stringBuilder.append("o")
+            it==25-> stringBuilder.append("p")
+            it==26-> stringBuilder.append("q")
+            it==27-> stringBuilder.append("r")
+            it==28-> stringBuilder.append("s")
+            it==29-> stringBuilder.append("t")
+            it==30-> stringBuilder.append("u")
+            it==31-> stringBuilder.append("v")
+            it==32-> stringBuilder.append("w")
+            it==33-> stringBuilder.append("x")
+            it==34-> stringBuilder.append("y")
+            it==35-> stringBuilder.append("z")
+        }
+        }
+    return stringBuilder.toString()
+}
 
 /**
  * Средняя
