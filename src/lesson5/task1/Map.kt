@@ -159,6 +159,7 @@ fun mergePhoneBooks(mapA: Map<String, String>, mapB: Map<String, String>): Map<S
     }
     return resultMap
 }
+
 /**
  * Средняя
  *
@@ -211,19 +212,19 @@ fun canBuildFrom(chars: List<Char>, word: String): Boolean = TODO()
  * Например:
  *   extractRepeats(listOf("a", "b", "a")) -> mapOf("a" to 2)
  */
-fun extractRepeats(list: List<String>): Map<String, Int>{
+fun extractRepeats(list: List<String>): Map<String, Int> {
     val resultMap = mutableMapOf<String, Int>()
     var counter = 0
-    for(i in list){
-        if (!resultMap.containsKey(i)){
-            counter =1
-            resultMap.put(i, counter)
-        } else{
-            counter +=1
-            resultMap.set(i, counter)
+    for (i in list) {
+        if (!resultMap.containsKey(i)) {
+            counter = 1
+            resultMap[i] = counter
+        } else {
+            counter += 1
+            resultMap[i] = counter
         }
     }
-    return resultMap.filter {it.value>1 }
+    return resultMap.filter { it.value > 1 }
 }
 
 /**
