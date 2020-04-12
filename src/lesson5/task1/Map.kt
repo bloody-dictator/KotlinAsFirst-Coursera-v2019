@@ -220,7 +220,7 @@ fun extractRepeats(list: List<String>): Map<String, Int> {
             counter = 1
             resultMap[i] = counter
         } else {
-            counter += 1
+            counter = resultMap.getValue(i) + 1
             resultMap[i] = counter
         }
     }
