@@ -214,7 +214,7 @@ fun canBuildFrom(chars: List<Char>, word: String): Boolean = TODO()
  */
 fun extractRepeats(list: List<String>): Map<String, Int> {
     val resultMap = mutableMapOf<String, Int>()
-    var counter = 0
+    var counter: Int
     for (i in list) {
         if (!resultMap.containsKey(i)) {
             counter = 1

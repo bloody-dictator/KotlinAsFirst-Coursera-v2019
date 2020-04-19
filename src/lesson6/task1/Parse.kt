@@ -170,7 +170,27 @@ fun mostExpensive(description: String): String = TODO()
  *
  * Вернуть -1, если roman не является корректным римским числом
  */
-fun fromRoman(roman: String): Int = TODO()
+fun fromRoman(roman: String): Int {
+    val mapOfRoman = mapOf('I' to 1, 'V' to 5, 'X' to 10, 'L' to 50, 'C' to 100, 'D' to 500, 'M' to 1000)
+    var input = roman.toUpperCase().reversed()
+    var arabian = 0
+    var i = 0
+
+    while (i < input.length) {
+        var charRoman = input.get(i)
+        if (mapOfRoman.containsKey(charRoman)) {
+            if (i > 0 && mapOfRoman.getValue(charRoman) < mapOfRoman.getValue(input.get(i - 1))) {
+                arabian -= mapOfRoman.getValue(charRoman)
+            } else {
+                arabian += mapOfRoman.getValue(charRoman)
+            }
+        } else {
+            return -1
+        }
+        i++
+    }
+    return arabian
+}
 
 /**
  * Очень сложная
