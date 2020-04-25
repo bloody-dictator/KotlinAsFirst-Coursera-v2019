@@ -3,6 +3,9 @@
 package lesson7.task1
 
 import java.io.File
+import java.lang.Integer
+
+
 
 /**
  * Пример
@@ -53,7 +56,17 @@ fun alignFile(inputName: String, lineLength: Int, outputName: String) {
  * Регистр букв игнорировать, то есть буквы е и Е считать одинаковыми.
  *
  */
-fun countSubstrings(inputName: String, substrings: List<String>): Map<String, Int> = TODO()
+fun countSubstrings(inputName: String, substrings: List<String>): Map<String, Int> {
+    val mapStrings = mutableMapOf<String, Int>()
+    var count : Int= 0
+    for(line in File(inputName).readLines()){
+        for(substring in substrings){
+              count= line.split("$substring").dropLastWhile { it.isEmpty() }.toTypedArray().size-1
+                mapStrings.put(substring, count)
+        }
+    }
+    return mapStrings
+}
 
 
 /**
@@ -258,8 +271,9 @@ Suspendisse ~~et elit in enim tempus iaculis~~.
  * (Отступы и переносы строк в примере добавлены для наглядности, при решении задачи их реализовывать не обязательно)
  */
 fun markdownToHtmlSimple(inputName: String, outputName: String) {
-    TODO()
-}
+
+    }
+
 
 /**
  * Сложная
