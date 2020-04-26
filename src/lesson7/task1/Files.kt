@@ -102,9 +102,6 @@ fun countSubstrings(inputName: String, substrings: List<String>): Map<String, In
  *
  */
 fun sibilants(inputName: String, outputName: String) {
-    for (line in File(inputName).readLines()) {
-
-    }
 
 }
 
@@ -284,21 +281,26 @@ fun identicalLetters(word: String): Boolean {
 }
 
 fun chooseLongestChaoticWord(inputName: String, outputName: String) {
-    val resultmap = HashMap<String, Int>()
+    var resultmap = HashMap<String, Int>()
+    val outputStream = File(outputName).bufferedWriter()
     for (line in File(inputName).readLines()) {
-        if (!identicalLetters(line.toLowerCase())) {
-            continue
-        } else {
-            resultmap.put(line, line.length)
+        if (line.isNotEmpty()) {
+            if (!identicalLetters(line.toLowerCase())) {
+                continue
+            } else {
+                resultmap.put(line, line.length)
+            }
         }
     }
-    println(resultmap.toSortedMap())
-    var maxLength: Int = max(resultmap.values)
-    val outputStream = File(outputName).bufferedWriter()
-    val newResultmap = resultmap.filter { it.value == maxLength }.keys.joinToString(separator = ", ")
-    outputStream.write(newResultmap)
-    outputStream.close()
-    println(newResultmap)
+    if (resultmap.isNotEmpty()) {
+        var maxLength: Int = max(resultmap.values)
+        val newResultmap = resultmap.filter { it.value == maxLength }.keys.joinToString(separator = ", ")
+        outputStream.write(newResultmap)
+        outputStream.close()
+    } else {
+        outputStream.write("")
+        outputStream.close()
+    }
 }
 
 /**
