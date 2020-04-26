@@ -187,7 +187,7 @@ fun top20Words(inputName: String): Map<String, Int> {
     }
     println(words)
     for (word in words) {
-        if(word.isNotBlank()) {
+        if (word.isNotBlank()) {
             if (!wordCount.containsKey(word)) {
                 wordCount[word] = 1
             } else {
@@ -196,14 +196,18 @@ fun top20Words(inputName: String): Map<String, Int> {
         }
     }
     var item: Map.Entry<String, Int>?
-    if (wordCount.size>0) {
-        while (top20word.size < 20) {
-            item = wordCount.maxBy { it.value }
-            top20word[item!!.key] = item!!.value
-            wordCount.remove(item.key)
+    if (wordCount.size > 0) {
+        if (wordCount.size < 20) {
+            return wordCount
+        } else {
+            while (top20word.size < 20) {
+                item = wordCount.maxBy { it.value }
+                top20word[item!!.key] = item!!.value
+                wordCount.remove(item.key)
+            }
+            return top20word
         }
-        return top20word
-    }else return mapOf()
+    } else return mapOf()
 }
 
 
