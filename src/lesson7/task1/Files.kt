@@ -3,8 +3,6 @@
 package lesson7.task1
 
 import java.io.File
-import java.io.File.separator
-import java.lang.Integer
 import java.util.Collections.max
 
 
@@ -180,7 +178,37 @@ fun alignFileByWidth(inputName: String, outputName: String) {
  * Ключи в ассоциативном массиве должны быть в нижнем регистре.
  *
  */
-fun top20Words(inputName: String): Map<String, Int> = TODO()
+fun top20Words(inputName: String): Map<String, Int> {
+    val wordCount = mutableMapOf<String, Int>()
+    val top20word = mutableMapOf<String, Int>()
+    val words = ArrayList<String>()
+    for (line in File(inputName).readLines()) {
+        for (word in line.split("\\s".toRegex())) {
+            var newWord = word.replace("[^A-Za-zА-Яа-яёЁ]".toRegex(), "")
+            words.add(newWord.toLowerCase())
+        }
+    }
+    println(words)
+    for (word in words) {
+        if(word.isNotBlank()) {
+            if (!wordCount.containsKey(word)) {
+                wordCount[word] = 1
+            } else {
+                wordCount[word] = wordCount.getValue(word) + 1
+            }
+        }
+    }
+    var item: Map.Entry<String, Int>?
+    if (wordCount.size>0) {
+        while (top20word.size < 20) {
+            item = wordCount.maxBy { it.value }
+            top20word[item!!.key] = item!!.value
+            wordCount.remove(item.key)
+        }
+        return top20word
+    }else return mapOf()
+}
+
 
 /**
  * Средняя
@@ -267,7 +295,7 @@ fun chooseLongestChaoticWord(inputName: String, outputName: String) {
     println(resultmap.toSortedMap())
     var maxLength: Int = max(resultmap.values)
     val outputStream = File(outputName).bufferedWriter()
-    val newResultmap = resultmap.filter { it.value == maxLength }.keys.joinToString( separator = ", ")
+    val newResultmap = resultmap.filter { it.value == maxLength }.keys.joinToString(separator = ", ")
     outputStream.write(newResultmap)
     outputStream.close()
     println(newResultmap)
