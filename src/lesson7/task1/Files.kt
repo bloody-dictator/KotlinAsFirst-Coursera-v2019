@@ -298,7 +298,7 @@ fun chooseLongestChaoticWord(inputName: String, outputName: String) {
     }
     if (resultmap.isNotEmpty()) {
         var maxLength: Int = max(resultmap.values)
-        val newResultmap = resultmap.filter { it.value == maxLength }.keys.joinToString(separator = ", ")
+        val newResultmap = resultmap.toSortedMap().filter { it.value == maxLength }.keys.joinToString(separator = ", ")
         outputStream.write(newResultmap)
         outputStream.close()
     } else {
